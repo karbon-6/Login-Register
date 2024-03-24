@@ -1,5 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AuthPage from "../modules/auth/AuthPage";
+import PrivateRoutes from "./PrivateRoutes";
+import ErrorsPage from "../modules/error/ErrorsPage";
 
 
 const AppRoutes = () => {
@@ -9,9 +11,11 @@ const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="error/*" element={<ErrorsPage />} />
                 {currentUser ?
                     <>
-                        <Route path="login/*" element={<AuthPage />} />
+                        <Route path="*" element={<PrivateRoutes />} />
+                        <Route index element={<Navigate to='home' />} />
                     </> :
                     <>
                         <Route path="login/*" element={<AuthPage />} />
@@ -21,3 +25,5 @@ const AppRoutes = () => {
         </BrowserRouter>
     )
 }
+
+export default AppRoutes

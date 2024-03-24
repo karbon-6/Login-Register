@@ -2,10 +2,12 @@ import {Formik, Form, Field } from 'formik'
 import { initialValues, validationSchema } from './__request/initialValuesAndValidation'
 import { ErrorMessageFields, FieldStyled, SubmitButton } from '../../../utilites/utilities'
 import { registerUserReq } from './__request/registerRequest'
+import { useNavigate } from 'react-router-dom'
 
 function Register(){
 
     const labelStyle = 'block text-sm font-medium text-gray-600'
+    const navigate = useNavigate()
     
     async function handleRegister(values){
         const response = await registerUserReq(values)
@@ -26,28 +28,28 @@ function Register(){
                                 <label className={labelStyle}>
                                     Name
                                 </label>
-                                <FieldStyled name='name' type='text' className={fieldsStyle} />
+                                <FieldStyled name='name' type='text' />
                                 <ErrorMessageFields name='name' />
                             </div>
                             <div className='mb-4'>
                                 <label className={labelStyle}>
                                     Email
                                 </label>
-                                <FieldStyled name='email' type='email' className={fieldsStyle}/>
+                                <FieldStyled name='email' type='email' />
                                 <ErrorMessageFields name='email'/>
                             </div>
                             <div className='mb-4'>
                                 <label className={labelStyle}>
                                     Password
                                 </label>
-                                <FieldStyled name='password' type='password' className={fieldsStyle} />
+                                <FieldStyled name='password' type='password' />
                                 <ErrorMessageFields name='password' />
                             </div>
                             <div className='mb-4'>
                                 <label className={labelStyle}>
                                     Confirm Password
                                 </label>
-                                <FieldStyled name='confirmPassword' type='password' className={fieldsStyle} />
+                                <FieldStyled name='confirmPassword' type='password' />
                                 <ErrorMessageFields name='confirmPassword' />
                             </div>
                             <div className='flex items-center justify-between'>
@@ -56,6 +58,7 @@ function Register(){
                                     Already have an Account?
                                     <button
                                     className='text-blue-500 cursor-printer hover:underline'
+                                    onClick={()=> navigate('/login/')}
                                     >
                                         Login
                                     </button>

@@ -2,12 +2,14 @@ import { Form, Formik } from "formik"
 import { initialValues, validationSchema } from "./__request/initialValuesAndValidation"
 import { loginReq } from "./__request/logInRequest"
 import { ErrorMessageFields, FieldStyled, SubmitButton } from "../../../utilites/utilities"
+import { useNavigate } from "react-router-dom"
 
 
 
 function Login(){
 
     const labelStyle = 'block text-sm font-medium text-gray-600'
+    const navigate = useNavigate()
 
     async function login(values){
         await loginReq(values)
@@ -44,6 +46,7 @@ function Login(){
                                     Don't have an account?
                                     <button
                                     className="text-blue-500 cursor-pointer hover:underline"
+                                    onClick={()=> navigate('register')}
                                     >
                                         Create one
                                     </button>
